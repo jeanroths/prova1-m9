@@ -80,7 +80,26 @@ Recebimento - garante que os dados enviados pelo simulador são recebidos pelo b
 
 ## Vídeo
 
+# Explicação
+
+Este aplicativo é um sistema simples de monitoramento de temperatura que gera valores aleatórios de temperatura para um freezer e um refrigerador. Ele usa MQTT (Message Queuing Telemetry Transport) para publicar dados de temperatura para um corretor MQTT especificado. O sistema envia alarmes caso a temperatura saia da faixa permitida.
 
 
+## Estrutura da mensagem: 
+
+representa a estrutura de dados de uma mensagem contendo os seguintes campos:
+
+- ID: o ID do dispositivo (por exemplo, lj01f01)
+- Tipo: O tipo de dispositivo (freezer ou geladeira)
+- Temperatura: O valor da temperatura
+- Timestamp: \data e hora de quando a medição foi realizada
+- Alarme: Um sinalizador booleano para indicar se um alarme deve ser acionado com base no valor da temperatura
+- Função printMessage: Formata e imprime a mensagem de temperatura em um formato legível por humanos
+
+- Função MsgSender: gera uma temperatura aleatória para um freezer ou geladeira e cria um objeto Message
+
+- Função cliente: Conecta-se a um corretor MQTT, publica mensagens de temperatura com QoS 1 e imprime as mensagens em buffer a cada 10 segundos
+
+- Função printBufferedMessages: formata e imprime as mensagens de temperatura armazenadas em buffer em um formato legível
 
 
